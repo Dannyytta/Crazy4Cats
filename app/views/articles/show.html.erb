@@ -7,4 +7,7 @@
   <%= link_to "Back to articles", articles_path %>
 
   <%= button_to "Destroy this article", @article, method: :delete %>
+  <% Article::Kinds.each do |kind| %>
+  <%= button_to "#{Article::KindsSpanish[kind]}", new_user_reaction_path(article_id: @article.id, reaction_type: "article", kind: kind), method: :post %> 
+  <% end %>  
 </div>
