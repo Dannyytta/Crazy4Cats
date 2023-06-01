@@ -1,13 +1,22 @@
 <p style="color: green"><%= notice %></p>
 
-<%= render @article %>
 
-<div>
-  <%= link_to "Edit this article", edit_article_path(@article) %> |
-  <%= link_to "Back to articles", articles_path %>
 
-  <%= button_to "Destroy this article", @article, method: :delete %>
-  <% Article::Kinds.each do |kind| %>
-  <%= button_to "#{Article::KindsSpanish[kind]}", new_user_reaction_path(article_id: @article.id, reaction_type: "article", kind: kind), method: :post %> 
-  <% end %>  
-</div>
+<% if user_signed_in? %>
+  <%= render @article %>
+  <%= render 'comments/comments' %>
+  <%= render 'comments/create' %>
+  <div>    
+    <%= button_to "Destroy this article", @article, method: :delete %>
+    <% Article::Kinds.each do |kind| %>
+    <%= button_to "#{Article::KindsSpanish[kind]}", new_user_reaction_path(article_id: @article.id,
+      reaction_type: "article", kind: kind), method: :post %>
+    <% end %>
+    <%= link_to "Edit this article", edit_article_path(@article) %> |
+    <%= link_to "Back to articles", articles_path %>
+  </div>
+
+<% else %>
+  <%= render @article %>
+  <%= render 'comments/comments' %>
+<% end %>

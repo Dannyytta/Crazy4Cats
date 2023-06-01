@@ -6,12 +6,12 @@ class ReactionsController < ApplicationController
         @comment = Comment.find(params[:comment_id]) if params[:comment_id] 
         @kind = params[:kind] 
         respond_to do |format|
-            (@type =="comment") ? reaction_comment = Reaction.find_by(user_id: @user, comment_id: @comment.id) : reaction_article = Reaction.find_by(user_id: @user.id, article_id: @article.id) 
+            (@type =="comment") ? reaction_comment = Reaction.find_by(comment_id: @comment.id) : reaction_article = Reaction.find_by(article_id: @article.id) 
             
             if reaction_article || reaction_comment 
                 format.html { redirect_to article_path(@article), notice: 'You already reacted to this article' } 
             else 
-                (@type == "article") ? @reaction = Reaction.new(user_id: @user.id, article_id: @article.id, reaction_type: @type, kind: @kind) : @reaction = Reaction.new(user_id: @user.id, comment_id: @comment.id, reaction_type: @type, kind: @kind)
+                (@type == "article") ? @reaction = Reaction.new(article_id: @article.id, reaction_type: @type, kind: @kind) : @reaction = Reaction.new(comment_id: @comment.id, reaction_type: @type, kind: @kind)
                 if @reaction.save! 
                     format.html { redirect_to article_path(@article), notice:'Reaction was successfully created.' } 
                 else 

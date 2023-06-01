@@ -1,0 +1,13 @@
+<!-- app/views/articles/show.html.erb -->
+<h2>Crea tu Comentario</h2>
+
+<%= form_with(model: [@article, @comment], local: true) do |form| %>
+  <div class="field">
+    <%= form.label :content %>
+    <%= form.text_area :content, rows: 4 %>
+  </div>
+  <div class="actions">
+    <%= form.submit 'Add Comment' %>
+  </div>
+<% end %>
+<br>

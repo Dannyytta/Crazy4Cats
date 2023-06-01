@@ -1,0 +1,15 @@
+<div id="articles">
+    <% @articles.each do |article| %>
+        <div class="article">
+            <h4><strong>Título:</strong><%= article.title %></h4>
+            <p><%= article.description %></p>
+            <% article.comments.each do |comment| %>
+                <div class="comment">
+                    <strong><%= comment.user.name %>:</strong>
+                    <%= comment.content %>
+                </div>
+            <% end %>
+            <%= link_to "Show this article", article %>
+        </div>
+    <% end %>
+</div>
