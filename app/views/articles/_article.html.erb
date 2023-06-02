@@ -1,21 +1,19 @@
-<div id="<%= dom_id article %>">
-  <p>
-    <strong>Usuario:</strong><br>
-    <%= article.user.name %>
-  </p>
-
-  <p>
-    <strong>Titulo:</strong><br>
-    <%= article.title %>
-  </p>
-
-  <p>
-    <strong>Publicación:</strong><br>
-    <%= article.description %>
-  </p>
-
-  
 
 
+<div class="card text-center">
+  <div class="card-header">
+      <%= article.title %>
+  </div>
+  <div id="<%= dom_id article %>">
+    
+   
 
+      <%= article.description %>
+   
+    <div class="card-footer text-body-secondary">
+
+      <%= article.user.name %>
+    
+  </div>
+  </div>
 </div>

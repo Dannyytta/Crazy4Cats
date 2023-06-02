@@ -10,22 +10,22 @@
       </ul>
     </div>
   <% end %>
-
+  <br>
   <div>
-    <%= form.label :Titulo, style: "display: block" %>
-    <%= form.text_field :title %>
+    <%= form.label :title, style: "display: block" %>
+    <%= form.text_field :title, class: "form-control"  %>
   </div>
-
+  <br>
   <div>
     <%= form.label :description, style: "display: block" %>
-    <%= form.text_field :description %>
+    <%= form.text_field :description, class: "form-control"  %>
   </div>
-
+  <br>
   <div>
     <%= form.hidden_field :user_id, value: current_user.id%>
   </div>
-
+  <br>
   <div>
-    <%= form.submit %>
+    <center><%= form.submit "Crear articulo", class:"btn btn-light"  %>
   </div>
 <% end %>

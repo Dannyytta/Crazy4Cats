@@ -1,15 +1,19 @@
 <div id="articles">
-    <% @articles.each do |article| %>
-        <div class="article">
-            <h4><strong>Título:</strong><%= article.title %></h4>
-            <p><%= article.description %></p>
-            <% article.comments.each do |comment| %>
-                <div class="comment">
-                    <strong><%= comment.user.name %>:</strong>
-                    <%= comment.content %>
-                </div>
-            <% end %>
-            <%= link_to "Show this article", article %>
+<% @articles.each do |article| %>
+  <div class="card mb-3">
+    <div class="card-body">
+      <h4 class="card-title"><strong>Título:</strong> <%= article.title %></h4>
+      <p class="card-text"><%= article.description %></p>
+      <% article.comments.each do |comment| %>
+        <div class="card mb-3">
+          <div class="card-body">
+            <h6 class="card-subtitle mb-2 text-muted"><strong><%= comment.user.name %>:</strong></h6>
+            <p class="card-text"><%= comment.content %></p>
+          </div>
         </div>
-    <% end %>
-</div>
+      <% end %>
+      <%= link_to "Show this article", article, class: "btn btn-light" %>
+    </div>
+  </div>
+<% end %>
+

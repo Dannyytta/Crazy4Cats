@@ -6,12 +6,10 @@
   <%= render @article %>
   <%= render 'comments/comments' %>
   <%= render 'comments/create' %>
-  <div>    
-    <%= button_to "Destroy this article", @article, method: :delete %>
-    <% Article::Kinds.each do |kind| %>
-    <%= button_to "#{Article::KindsSpanish[kind]}", new_user_reaction_path(article_id: @article.id,
-      reaction_type: "article", kind: kind), method: :post %>
-    <% end %>
+  <% if current_user == @article.user %>
+    <%= button_to "Destroy this article", @article, method: :delete , class:"btn btn-light"%>
+  <% end %>
+  <div>  
     <%= link_to "Edit this article", edit_article_path(@article) %> |
     <%= link_to "Back to articles", articles_path %>
   </div>
@@ -20,3 +18,4 @@
   <%= render @article %>
   <%= render 'comments/comments' %>
 <% end %>
+
